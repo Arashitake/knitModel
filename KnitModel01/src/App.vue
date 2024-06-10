@@ -9,22 +9,28 @@ import cycleView from './views/cycleView.vue'
     <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/line">Line</RouterLink>
-        <RouterLink to="/square">Square</RouterLink>
-        <RouterLink to="/cylinder">Cylinder</RouterLink>
-      </nav>
-      <cycleView />
+      <HelloWorld msg="Hand Rope" />
+      <div>
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <!-- <RouterLink to="/line">Line</RouterLink> -->
+          <RouterLink to="/square">方八股辫</RouterLink>
+          <RouterLink to="/cylinder">圆八股辫</RouterLink>
+        </nav>
+        <cycleView />
+      </div>
     </div>
   </header>
 
   <RouterView />
 </template>
 
-<style scoped>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -36,10 +42,11 @@ header {
 }
 
 nav {
-  width: 100%;
+  /* width: 100%; */
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
+  border: 1px solid #f00;
 }
 
 nav a.router-link-exact-active {
