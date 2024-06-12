@@ -4,6 +4,14 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <template>
   <main>
-    <!-- <TheWelcome /> -->
+    <TheWelcome />
   </main>
 </template>
+
+<style lang="less" scoped>
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+</style>

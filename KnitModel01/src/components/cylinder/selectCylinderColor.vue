@@ -2,8 +2,7 @@
 import { reactive, watch } from 'vue'
 
 const props = defineProps({
-  pureColorArr: Array[String],
-  isChange: Boolean
+  pureColorArr: Array[String]
 })
 
 // v-model颜色数组
@@ -12,12 +11,9 @@ let getColorArr = reactive([...props.pureColorArr])
 // 可以通过watch去获取历史选择色号
 const emit = defineEmits(['selectcolor'])
 watch(getColorArr, (getColorArr) => {
-  // console.log('getColorArr: ', getColorArr)
   emit('selectcolor', getColorArr)
 })
 watch(props, (oldval) => {
-  console.log('1isChange:', oldval.isChange)
-  console.log('color:', oldval.pureColorArr)
   getColorArr = oldval.pureColorArr
 })
 </script>

@@ -11,6 +11,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "dom-to-image": "^2.6.0",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
@@ -24,6 +25,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
     "less": "^4.2.0",
+    "lodash": "^4.17.21",
     "prettier": "^3.2.5",
     "vite": "^5.2.8"
   }

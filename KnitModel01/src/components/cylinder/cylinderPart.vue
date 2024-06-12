@@ -264,9 +264,14 @@ const draw = (ZOOM) => {
   diskCanvas.value.height = 360
 
   // 圆柱
+  // let isSpinning = true
   let cylinder = new Zdog.Illustration({
     element: '.cylinder-canvas',
     zoom: ZOOM.value
+    // dragRotate: true,
+    // onDragStart: function () {
+    //   isSpinning = false
+    // }
   })
 
   // 分组
@@ -336,9 +341,11 @@ const draw = (ZOOM) => {
     cyanG.rotate.set(viewRotation)
     purpleG.rotate.set(viewRotation)
     whiteG.rotate.set(viewRotation)
-    cylinder.updateRenderGraph()
 
+    cylinder.updateRenderGraph()
+    // cylinder.rotate.y += isSpinning ? 0.03 : 0
     disk.updateRenderGraph()
+
     requestAnimationFrame(animate)
   }
 
@@ -348,14 +355,6 @@ const draw = (ZOOM) => {
 
 <template>
   <div class="cylinder">
-    <div class="select-color">
-      <ul>
-        <span>当前颜色：</span>
-        <li v-for="(color, index) in props.kcolor" :key="index">
-          <span :style="{ backgroundColor: color }"></span>
-        </li>
-      </ul>
-    </div>
     <div class="draw-part">
       <canvas class="cylinder-canvas" ref="cylinderCanvas" width="300" height="500"></canvas>
       <div>
@@ -367,48 +366,24 @@ const draw = (ZOOM) => {
               {{ ZOOM == 0.7 ? '[最大]' : ZOOM.toFixed(1) == 0.3 ? '[最小]' : null }}
             </span>
           </p>
-          <button @click="decreaseZoom">缩小</button>
-          <button @click="increaseZoom">放大</button>
-          <button class="restore" @click="restoreZooom">还原缩放倍数</button>
+          <div class="zoom-3btn">
+            <button @click="decreaseZoom">缩小</button>
+            <button @click="increaseZoom">放大</button>
+            <button class="restore" @click="restoreZooom">还原缩放倍数</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .cylinder {
   display: flex;
   width: 500px;
   flex-direction: column;
   align-items: center;
   /* border: 1px solid #f00; */
-}
-
-.select-color {
-  width: 450px;
-}
-
-.select-color ul {
-  display: flex;
-  list-style: none;
-}
-
-.select-color ul span {
-  display: block;
-  height: 24px;
-  line-height: 24px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.select-color ul li span {
-  display: block;
-  margin: 0 4px 4px 0;
-  width: 24px;
-  height: 24px;
-  border-radius: 100%;
-  border: 1px solid #666666;
 }
 
 .draw-part {
@@ -434,7 +409,6 @@ const draw = (ZOOM) => {
   background: #eeeeee;
   border-radius: 8px;
   box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
-  cursor: move;
   overflow: hidden;
   /* border: 1px solid #f00; */
 }
@@ -443,40 +417,40 @@ const draw = (ZOOM) => {
   margin: 12px 0 0 8px;
   width: 150px;
   /* border: 1px solid #0f0; */
-}
 
-.zoom-num {
-  margin: 0 6px;
-  line-height: 32px;
-  padding: 0 3px;
-  text-align: center;
-  font-weight: bold;
-  /* border: 1px solid #f00; */
-}
+  .zoom-num {
+    margin: 0 6px;
+    line-height: 32px;
+    padding: 6px 3px;
+    text-align: center;
+    font-weight: bold;
+    /* border: 1px solid #f00; */
+    strong {
+      font-weight: bold;
+      color: #eb1d4e;
+    }
+  }
 
-.zoom-num strong {
-  font-weight: bold;
-  color: #eb1d4e;
-}
+  button {
+    margin: 8px 4px 0 4px;
+    width: 65px;
+    height: 32px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    outline: none;
+    background-color: #eeeeee;
+    border-radius: 5px;
+    border: 1px solid #666;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
 
-.zoom-btn button {
-  margin: 8px 4px 0 4px;
-  width: 65px;
-  height: 32px;
-  font-size: 16px;
-  letter-spacing: 1px;
-  outline: none;
-  background-color: #eeeeee;
-  border-radius: 5px;
-  border: 1px solid #666;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-}
-.restore {
-  width: 138px !important;
-}
-.zoom-btn button:hover {
-  background: #666666;
-  color: aliceblue;
+    &:hover {
+      background: #666666;
+      color: aliceblue;
+    }
+  }
+  .restore {
+    width: 138px !important;
+  }
 }
 </style>

@@ -1,15 +1,14 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import cycleView from './views/cycleView.vue'
+import colorListView from './views/colorListView.vue'
 </script>
 
 <template>
   <header>
-    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
-
     <div class="wrapper">
-      <HelloWorld msg="Hand Rope" />
+      <div class="greetings">
+        <h1 class="green">Hand Rope</h1>
+      </div>
       <div>
         <nav>
           <RouterLink to="/">Home</RouterLink>
@@ -17,7 +16,7 @@ import cycleView from './views/cycleView.vue'
           <RouterLink to="/square">方八股辫</RouterLink>
           <RouterLink to="/cylinder">圆八股辫</RouterLink>
         </nav>
-        <cycleView />
+        <colorListView />
       </div>
     </div>
   </header>
@@ -25,10 +24,14 @@ import cycleView from './views/cycleView.vue'
   <RouterView />
 </template>
 
-<style>
+<style lang="less">
 * {
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* 启用全局平滑滚动 */
 }
 
 header {
@@ -36,35 +39,39 @@ header {
   max-height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.greetings h1 {
+  position: relative;
+  text-align: left;
+  font-size: 2.6rem;
+  font-weight: 500;
+  color: #66ba6e;
 }
 
 nav {
-  /* width: 100%; */
-  font-size: 12px;
-  text-align: center;
   margin-top: 2rem;
-  border: 1px solid #f00;
-}
+  text-align: left;
+  font-size: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #666;
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
+  a.router-link-exact-active {
+    color: var(--color-text);
+  }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
+  a.router-link-exact-active:hover {
+    background-color: transparent;
+  }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
+  a {
+    display: inline-block;
+    padding: 0 1rem;
+    border-left: 1px solid #666;
+    color: #66ba6e;
 
-nav a:first-of-type {
-  border: 0;
+    &:first-of-type {
+      border: 0;
+    }
+  }
 }
 
 @media (min-width: 1024px) {
@@ -74,23 +81,10 @@ nav a:first-of-type {
     padding-right: calc(var(--section-gap) / 2);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
   header .wrapper {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
   }
 }
 </style>
