@@ -11,20 +11,22 @@ jobs:
 
     steps:
       - name: Checkout master branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           ref: master
 
-      - name: clone knitpage branch
+      - name: Configure Git
         run: |
           git config --global user.name "Arashitake"
           git config --global user.email "1292795269@qq.com"
-          git clone --branch knitpage https://github.com/Arashitake/knitModel knitpage
+
+      - name: Checkout knitpage branch
+        run: git checkout knitpage
 
       # 使用 rsync 同步 KnitModel01 文件夹内容到 knitpage 分支的根目录，并提交更改
       - name: Copy specified folder to target branch
         run: |
-          rsync -a --delete KnitModel01/ knitpage/
+          rsync -a --delete KnitModel01/ .
           git add .
           git commit -m "update: from master to knitpage"
           git push origin knitpage
