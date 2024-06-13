@@ -20,6 +20,14 @@ jobs:
           git config --global user.name "Arashitake"
           git config --global user.email "1292795269@qq.com"
 
+      - name: List contents of master branch for debugging
+        run: ls -al
+
+      - name: Create a temporary directory and copy KnitModel01 contents
+        run: |
+          mkdir /tmp/knitmodel
+          cp -r KnitModel01/* /tmp/knitmodel/
+
       - name: Fetch all branches
         run: git fetch --all
 
@@ -28,13 +36,10 @@ jobs:
           git branch -a 
           git checkout knitpage
 
-      - name: List directory for debugging after checkout
-        run: ls -al
-
       # 使用 rsync 同步 KnitModel01 文件夹内容到 knitpage 分支的根目录，并提交更改
       - name: Copy specified folder to target branch
         run: |
-          rsync -a --delete KnitModel01/ .
+          rsync -a --delete /tmp/knitModel/ .
           git add .
           git commit -m "update: from master to knitpage"
           git push origin knitpage
