@@ -29,27 +29,3 @@ jobs:
           build_dir: KnitModel01
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: List contents of master branch for debugging
-      #   run: ls -al
-
-      # - name: Create a temporary directory and copy KnitModel01 contents
-      #   run: |
-      #     mkdir /tmp/knitmodel
-      #     cp -r KnitModel01/* /tmp/knitmodel/
-
-      # - name: Fetch all branches
-      #   run: git fetch --all
-
-      # - name: Checkout knitpage branch
-      #   run: |
-      #     git branch -a
-      #     git checkout knitpage
-
-      # # 使用 rsync 同步 KnitModel01 文件夹内容到 knitpage 分支的根目录，并提交更改
-      # - name: Copy specified folder to target branch
-      #   run: |
-      #     rsync -a --delete /tmp/knitModel/ .
-      #     git add .
-      #     git commit -m "update: from master to knitpage"
-      #     git push origin knitpage
