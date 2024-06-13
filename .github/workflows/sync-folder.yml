@@ -19,7 +19,7 @@ jobs:
         run: |
           git config --global user.name "Arashitake"
           git config --global user.email "1292795269@qq.com"
-          git checkout knitpage
+          git checkout -b knitpage origin/knitpage
 
       # 使用 rsync 同步 KnitModel01 文件夹内容到 knitpage 分支的根目录，并提交更改
       - name: Copy specified folder to target branch
