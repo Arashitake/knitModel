@@ -28,6 +28,9 @@ jobs:
           git branch -a 
           git checkout knitpage
 
+      - name: List directory for debugging after checkout
+        run: ls -al
+
       # 使用 rsync 同步 KnitModel01 文件夹内容到 knitpage 分支的根目录，并提交更改
       - name: Copy specified folder to target branch
         run: |
