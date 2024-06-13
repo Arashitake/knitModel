@@ -15,6 +15,11 @@ jobs:
         with:
           ref: master
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "Arashitake"
+          git config --global user.email "1292795269@qq.com"
+
       - name: Deploy
         # 使用别人写好的一个 action
         uses: crazy-max/ghaction-github-pages@v4
@@ -24,10 +29,6 @@ jobs:
           build_dir: KnitModel01
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Configure Git
-      #   run: |
-      #     git config --global user.name "Arashitake"
-      #     git config --global user.email "1292795269@qq.com"
 
       # - name: List contents of master branch for debugging
       #   run: ls -al
