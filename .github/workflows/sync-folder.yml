@@ -3,7 +3,7 @@ name: Sync Folder to Target Branch
 on:
   push:
     branches:
-      - master # 监视主分支
+      - master
 
 jobs:
   sync:
@@ -21,11 +21,9 @@ jobs:
           git config --global user.email "1292795269@qq.com"
 
       - name: Deploy
-        # 使用别人写好的一个 action
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: knitpage
-          # 部署目录为 VuePress 的默认输出目录
           build_dir: KnitModel01
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.knit }}
