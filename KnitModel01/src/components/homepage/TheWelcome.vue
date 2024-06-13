@@ -1,10 +1,10 @@
 <script setup>
 import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-// import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
+import DocumentationIcon from '@/components/icons/IconDocumentation.vue'
+import ToolingIcon from '@/components/icons/IconTooling.vue'
+// import EcosystemIcon from '@/components/icons/IconEcosystem.vue'
+import CommunityIcon from '@/components/icons/IconCommunity.vue'
+import SupportIcon from '@/components/icons/IconSupport.vue'
 </script>
 
 <template>
@@ -14,6 +14,19 @@ import SupportIcon from './icons/IconSupport.vue'
     </template>
     <template #heading>Intro</template>
     一个基于 <b>Vue3</b> 和 <b>Zdog</b> 的多股绳结颜色设计工具。
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <SupportIcon />
+    </template>
+    <template #heading>Support</template>
+    为爱发电系列，目前进度：
+    <ol>
+      <li>八股辫：方八股辫 ✅，圆八股辫 ✅</li>
+      <li>轮回 🔜</li>
+      <li>六股辫🔜</li>
+    </ol>
   </WelcomeItem>
 
   <WelcomeItem>
@@ -65,17 +78,8 @@ import SupportIcon from './icons/IconSupport.vue'
       target="_blank"
       rel="noopener"
     >
-      knitModel
-    </a>
-    <br />如果喜欢可以点个star呀 (*°▽°*)╯
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <SupportIcon />
-    </template>
-    <template #heading>Support</template>
-    为爱发电系列。
+      knitModel </a
+    >，<br />如果喜欢可以点个star呀 (*°▽°*)╯。
   </WelcomeItem>
 </template>
 

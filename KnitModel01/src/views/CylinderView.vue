@@ -89,9 +89,8 @@ const screenshotElement = ref(null)
 .cylinder_outside {
   position: relative;
   display: flex;
-  padding-top: 20px;
+  padding: 20px 0;
   width: 508px;
-  min-height: 100vh;
   flex-direction: column;
   align-items: center;
   background-color: #fff;
@@ -186,5 +185,13 @@ const screenshotElement = ref(null)
       }
     }
   }
+}
+
+@media (max-width: 900px) {
+  // .cylinder_outside {
+  //   transform: scale(0.8);
+  //   transform-origin: 0;
+  //   border: 1px solid #f00 !important;
+  // }
 }
 </style>

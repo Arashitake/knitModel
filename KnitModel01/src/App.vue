@@ -1,22 +1,19 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import colorListView from './views/colorListView.vue'
+import { RouterView } from 'vue-router'
+import colorList from '@/components/homepage/colorList.vue'
+import navModel from '@/components/homepage/navModel.vue'
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <div class="greetings">
+        <img src="./assets/logo.png" alt="Hand Rope" />
         <h1 class="green">Hand Rope</h1>
       </div>
       <div>
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <!-- <RouterLink to="/line">Line</RouterLink> -->
-          <RouterLink to="/square">方八股辫</RouterLink>
-          <RouterLink to="/cylinder">圆八股辫</RouterLink>
-        </nav>
-        <colorListView />
+        <navModel />
+        <colorList />
       </div>
     </div>
   </header>
@@ -39,38 +36,19 @@ header {
   max-height: 100vh;
 }
 
-.greetings h1 {
-  position: relative;
-  text-align: left;
-  font-size: 2.6rem;
-  font-weight: 500;
-  color: #66ba6e;
-}
-
-nav {
-  margin-top: 2rem;
-  text-align: left;
-  font-size: 1rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid #666;
-
-  a.router-link-exact-active {
-    color: var(--color-text);
+.greetings {
+  display: flex;
+  align-items: center;
+  img {
+    width: 3.2rem;
+    height: 3.2rem;
   }
-
-  a.router-link-exact-active:hover {
-    background-color: transparent;
-  }
-
-  a {
-    display: inline-block;
-    padding: 0 1rem;
-    border-left: 1px solid #666;
+  h1 {
+    position: relative;
+    text-align: left;
+    font-size: 2.6rem;
+    font-weight: 500;
     color: #66ba6e;
-
-    &:first-of-type {
-      border: 0;
-    }
   }
 }
 

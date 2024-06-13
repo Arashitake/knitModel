@@ -15,14 +15,14 @@ const router = createRouter({
       component: () => import('../views/SquareView.vue')
     },
     {
-      path: '/line',
-      name: 'line',
-      component: () => import('../views/LineView.vue')
-    },
-    {
       path: '/cylinder',
       name: 'cylinder',
       component: () => import('../views/CylinderView.vue')
+    },
+    {
+      path: '/line',
+      name: 'line',
+      component: () => import('../views/LineView.vue')
     }
   ]
 })

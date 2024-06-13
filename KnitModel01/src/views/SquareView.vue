@@ -85,9 +85,8 @@ const screenshotElement = ref(null)
 .square_outside {
   display: flex;
   position: relative;
-  padding-top: 20px;
+  padding: 20px 0;
   width: 508px;
-  min-height: 100vh;
   flex-direction: column;
   align-items: center;
   background-color: #fff;
