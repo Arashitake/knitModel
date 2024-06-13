@@ -15,31 +15,40 @@ jobs:
         with:
           ref: master
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "Arashitake"
-          git config --global user.email "1292795269@qq.com"
+      - name: Deploy
+        # 使用别人写好的一个 action
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: knitpage
+          # 部署目录为 VuePress 的默认输出目录
+          build_dir: KnitModel01
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Configure Git
+      #   run: |
+      #     git config --global user.name "Arashitake"
+      #     git config --global user.email "1292795269@qq.com"
 
-      - name: List contents of master branch for debugging
-        run: ls -al
+      # - name: List contents of master branch for debugging
+      #   run: ls -al
 
-      - name: Create a temporary directory and copy KnitModel01 contents
-        run: |
-          mkdir /tmp/knitmodel
-          cp -r KnitModel01/* /tmp/knitmodel/
+      # - name: Create a temporary directory and copy KnitModel01 contents
+      #   run: |
+      #     mkdir /tmp/knitmodel
+      #     cp -r KnitModel01/* /tmp/knitmodel/
 
-      - name: Fetch all branches
-        run: git fetch --all
+      # - name: Fetch all branches
+      #   run: git fetch --all
 
-      - name: Checkout knitpage branch
-        run: |
-          git branch -a 
-          git checkout knitpage
+      # - name: Checkout knitpage branch
+      #   run: |
+      #     git branch -a
+      #     git checkout knitpage
 
-      # 使用 rsync 同步 KnitModel01 文件夹内容到 knitpage 分支的根目录，并提交更改
-      - name: Copy specified folder to target branch
-        run: |
-          rsync -a --delete /tmp/knitModel/ .
-          git add .
-          git commit -m "update: from master to knitpage"
-          git push origin knitpage
+      # # 使用 rsync 同步 KnitModel01 文件夹内容到 knitpage 分支的根目录，并提交更改
+      # - name: Copy specified folder to target branch
+      #   run: |
+      #     rsync -a --delete /tmp/knitModel/ .
+      #     git add .
+      #     git commit -m "update: from master to knitpage"
+      #     git push origin knitpage
