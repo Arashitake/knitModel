@@ -1,0 +1,30 @@
+name: Sync Folder to Target Branch
+
+on:
+  push:
+    branches:
+      - master # 监视主分支
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: Checkout knitpage branch
+        run: |
+          git config --global user.name "Arashitake"
+          git config --global user.email "1292795269@qq.com"
+          git checkout knitpage
+
+      # 使用 rsync 同步 KnitModel01 文件夹内容到 knitpage 分支的根目录，并提交更改
+      - name: Copy specified folder to target branch
+        run: |
+          rsync -a --delete KnitModel01/ knitpage/
+          git add .
+          git commit -m "update: from master to knitpage"
+          git push origin knitpage
