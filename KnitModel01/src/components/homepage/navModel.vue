@@ -1,17 +1,21 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import LS from '@/stores/localStorage'
 
-let isShow = ref(false)
+const isHasShow = LS.findVal('isShow')
+let isShow = ref(isHasShow ? LS.getVal('isShow') : false)
+
 const showOptionsBtn = () => {
   isShow.value = !isShow.value
+  LS.setVal('isShow', isShow.value)
 }
 </script>
 
 <template>
   <nav>
     <ul>
-      <li @click="showOptionsBtn"><RouterLink to="/">Home</RouterLink></li>
+      <li @click="showOptionsBtn"><RouterLink to="/">导航</RouterLink></li>
       <li>
         <p :class="isShow ? 'show_btn' : ''" @click="showOptionsBtn">八股辫</p>
         <div v-show="isShow" class="options_box">
@@ -48,10 +52,7 @@ nav {
         position: absolute;
         width: 200px;
         padding: 6px 0;
-        top: 2rem;
-        border-top: 1px solid #000;
-        // background-color: #eeeeee;
-        // border: 1px solid #f00;
+        top: 1.8rem;
       }
     }
   }

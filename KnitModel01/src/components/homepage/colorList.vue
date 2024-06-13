@@ -1,19 +1,31 @@
 <script setup>
-import { useColorListStore } from '@/stores/colorList.js'
 import { reactive } from 'vue'
+import { useColorListStore } from '@/stores/colorList.js'
+import localStorage from '@/stores/localStorage'
 
 const colorListStore = useColorListStore()
 // 获取颜色列表
 const colorList = reactive(colorListStore.showColorList())
+
 // 删除指定颜色组
 const deleteCurColorList = (key) => {
   colorListStore.deleteColorList(key)
+}
+
+// 缓存将数据存入localStage
+const setLocalStage = () => {
+  localStorage.setVal('colorList', Array.from(colorList))
+}
+const deleteLocalStage = () => {
+  localStorage.deleteVal('colorList')
+  colorListStore.clearColorList()
 }
 </script>
 
 <template>
   <div class="store">
     <p class="color_list_name">颜色列表</p>
+
     <ul>
       <div v-show="colorList.size == 0">
         当前还没有存储色组 (●'◡'●)/，<br />
@@ -24,7 +36,7 @@ const deleteCurColorList = (key) => {
           <p><b>色名</b>: {{ item[0] }}</p>
           <ol class="select_color">
             <b>色组：</b>
-            <li v-for="(color, index) in item[1]" :key="index">
+            <li v-for="(color, index) in item[1].colorArr" :key="index">
               <span :style="{ backgroundColor: color }"></span>
             </li>
           </ol>
@@ -32,39 +44,29 @@ const deleteCurColorList = (key) => {
         <button @click="deleteCurColorList(item[0])">Delete</button>
       </li>
     </ul>
+    <div class="localstage_btn" v-show="colorList.size != 0">
+      <button @click="setLocalStage">缓 存</button>
+      <button @click="deleteLocalStage">清空</button>
+    </div>
   </div>
 </template>
 
 <style lang="less" scoped>
 .store {
+  position: relative;
   width: 400px;
   height: 500px;
-  overflow: auto;
-
-  &::-webkit-scrollbar {
-    width: 8px; /* 滚动条宽度 */
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #eeeeee; /* 滚动轨道颜色 */
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #666666; /* 滚动条拇指颜色 */
-    border-radius: 10px; /* 滚动条拇指圆角 */
-    cursor: pointer;
-    &:hover {
-      background-color: #66ba6e;
-    }
-  }
 
   .color_list_name {
-    margin: 20px 0 15px;
+    margin: 25px 0 15px;
     font-size: 20px;
     font-weight: bold;
   }
 
   ul {
+    overflow: auto;
+    height: 400px;
+
     & > li {
       display: flex;
       padding-left: 15px;
@@ -98,14 +100,38 @@ const deleteCurColorList = (key) => {
         cursor: pointer;
       }
     }
+
+    &::-webkit-scrollbar {
+      width: 8px; /* 滚动条宽度 */
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #eeeeee; /* 滚动轨道颜色 */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #666666; /* 滚动条拇指颜色 */
+      border-radius: 10px; /* 滚动条拇指圆角 */
+      cursor: pointer;
+      &:hover {
+        background-color: #66ba6e;
+      }
+    }
   }
 
-  .zdog-canvas {
-    display: block;
-    width: 400px;
-    height: 400px;
-    background: #ffddbb;
-    cursor: move;
+  .localstage_btn {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    bottom: 0;
+
+    button {
+      margin-left: 10px;
+      padding: 0 10px;
+      height: 30px;
+      cursor: pointer;
+    }
   }
 }
 </style>

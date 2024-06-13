@@ -20,7 +20,7 @@ const pureColorArr = ref([
 // 是否出现颜色选项列表
 let isShow = ref(false)
 // 颜色选项列表key
-let keysList = reactive([])
+let nickNameList = reactive([])
 
 // 修改当前选色
 const colorListStore = useColorListStore()
@@ -31,7 +31,7 @@ const saveCurColorList = (name, pureColorArr) => {
 // 获取keys
 const getColorKeysList = () => {
   isShow.value = true
-  keysList = colorListStore.showColorKeyList()
+  nickNameList = colorListStore.showColorKeyList()
 }
 // 选色
 const modifiedCurColorList = (ckey) => {
@@ -70,10 +70,14 @@ const screenshotElement = ref(null)
         <button @click="saveCurColorList('cylinder', pureColorArr)">存 色</button>
         <!-- 色组的 key 列表 -->
         <ol v-show="isShow">
-          <li v-for="(ckey, index) in keysList" :key="index" @click="modifiedCurColorList(ckey)">
-            {{ ckey }}
+          <li
+            v-for="([ckey, cval], index) in nickNameList"
+            :key="index"
+            @click="modifiedCurColorList(ckey)"
+          >
+            {{ cval.nickName }}
           </li>
-          <p v-show="isShow && keysList.length == 0">当前没有存储色组噢</p>
+          <p v-show="isShow && nickNameList.length == 0">当前没有存储色组噢</p>
         </ol>
       </div>
     </div>

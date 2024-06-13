@@ -3,10 +3,14 @@ class localStorage {
   setVal(key, val) {
     window.localStorage.setItem(key, JSON.stringify(val))
   }
-  // find
+  // get
   getVal(key) {
     const val = window.localStorage.getItem(key)
-    if (val) return JSON.parse(val)
+    return val ? JSON.parse(val) : null
+  }
+  // find
+  findVal(key) {
+    return window.localStorage.getItem(key) ? true : false
   }
   // delete
   deleteVal(key) {
