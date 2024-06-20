@@ -192,7 +192,7 @@ const screenshotElement = ref(null)
   }
 }
 
-@media (max-width: 600px) {
+@media (min-width: 401px) and (max-width: 600px) {
   .cylinder_outside {
     transform: scale(0.75);
   }

@@ -96,7 +96,7 @@ const deleteLocalStage = () => {
         }
       }
       button {
-        margin-right: 20px;
+        margin-right: 15px;
         padding: 0 10px;
         height: 30px;
         line-height: 30px;
@@ -128,7 +128,7 @@ const deleteLocalStage = () => {
     width: 100%;
     justify-content: end;
     bottom: 0;
-    right: 20px;
+    right: 15px;
 
     button {
       margin-left: 10px;
@@ -139,7 +139,7 @@ const deleteLocalStage = () => {
   }
 }
 
-@media (max-width: 900px) {
+@media (min-width: 601px) and (max-width: 900px) {
   .store {
     width: 500px;
     .color_item {
@@ -147,7 +147,7 @@ const deleteLocalStage = () => {
     }
   }
 }
-@media (max-width: 600px) {
+@media (min-width: 401px) and (max-width: 600px) {
   .store {
     transform: scale(0.9);
   }
