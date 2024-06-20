@@ -31,7 +31,7 @@ const deleteLocalStage = () => {
         当前还没有存储色组 (●'◡'●)/，<br />
         若需要储存色组，请在模块中点击右上角“存色”按钮~
       </div>
-      <li v-for="(item, key) of colorList" :key="key">
+      <li class="color_item" v-for="(item, key) of colorList" :key="key">
         <div>
           <p><b>色名</b>: {{ item[0] }}</p>
           <ol class="select_color">
@@ -54,12 +54,14 @@ const deleteLocalStage = () => {
 <style lang="less" scoped>
 .store {
   position: relative;
+  margin-bottom: 20px;
   width: 400px;
   height: 500px;
+  transform-origin: top left;
 
   .color_list_name {
     margin: 25px 0 15px;
-    font-size: 20px;
+    font-size: 1.5rem;
     font-weight: bold;
   }
 
@@ -67,16 +69,17 @@ const deleteLocalStage = () => {
     overflow: auto;
     height: 400px;
 
-    & > li {
+    .color_item {
       display: flex;
       padding-left: 15px;
       align-items: center;
+      justify-content: space-between;
+      font-size: 1rem;
       border-bottom: 1px solid #666;
       b {
         font-weight: bold;
       }
       p {
-        font-size: 16px;
         line-height: 30px;
       }
       .select_color {
@@ -93,7 +96,7 @@ const deleteLocalStage = () => {
         }
       }
       button {
-        margin-left: 50px;
+        margin-right: 20px;
         padding: 0 10px;
         height: 30px;
         line-height: 30px;
@@ -125,6 +128,7 @@ const deleteLocalStage = () => {
     width: 100%;
     justify-content: end;
     bottom: 0;
+    right: 20px;
 
     button {
       margin-left: 10px;
@@ -132,6 +136,25 @@ const deleteLocalStage = () => {
       height: 30px;
       cursor: pointer;
     }
+  }
+}
+
+@media (max-width: 900px) {
+  .store {
+    width: 500px;
+    .color_item {
+      width: 500px;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .store {
+    transform: scale(0.9);
+  }
+}
+@media (max-width: 400px) {
+  .store {
+    transform: scale(0.85);
   }
 }
 </style>

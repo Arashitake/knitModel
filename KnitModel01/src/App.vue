@@ -31,11 +31,6 @@ html {
   scroll-behavior: smooth; /* 启用全局平滑滚动 */
 }
 
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
 .greetings {
   display: flex;
   align-items: center;
@@ -55,12 +50,13 @@ header {
 @media (min-width: 1024px) {
   header {
     display: flex;
-    place-items: center;
+    // place-items: center;
     padding-right: calc(var(--section-gap) / 2);
   }
 
   header .wrapper {
     display: flex;
+    flex-direction: column;
     place-items: flex-start;
     flex-wrap: wrap;
   }

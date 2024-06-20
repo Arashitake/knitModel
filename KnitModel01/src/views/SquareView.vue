@@ -94,6 +94,7 @@ const screenshotElement = ref(null)
   flex-direction: column;
   align-items: center;
   background-color: #fff;
+  transform-origin: top left;
   border: 1px solid #000;
 
   .out_btn {
@@ -182,6 +183,17 @@ const screenshotElement = ref(null)
         }
       }
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .cylinder_outside {
+    transform: scale(0.75);
+  }
+}
+@media (max-width: 400px) {
+  .cylinder_outside {
+    transform: scale(0.7);
   }
 }
 </style>
