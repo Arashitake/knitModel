@@ -187,12 +187,12 @@ const screenshotElement = ref(null)
 }
 
 @media (min-width: 401px) and (max-width: 600px) {
-  .cylinder_outside {
+  .square_outside {
     transform: scale(0.75);
   }
 }
 @media (max-width: 400px) {
-  .cylinder_outside {
+  .square_outside {
     transform: scale(0.7);
   }
 }
