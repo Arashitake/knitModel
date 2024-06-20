@@ -12,9 +12,10 @@ const filter8Node = (node) => {
 // 导出png图片
 export const captureNodeToPNG = (node, picName) => {
   if (node) {
+    node.style.transform = 'scale(1)'
     domToImage
       .toPng(node, {
-        height: 640,
+        height: 680,
         filter: filter8Node,
         cacheBust: true
       })
@@ -25,8 +26,12 @@ export const captureNodeToPNG = (node, picName) => {
         a.download = picName // 设置图片名称
         a.href = dataUrl
         a.dispatchEvent(event) // 触发a的单击事件
+        // 缩放回原先尺寸
+        node.style.transform = `scale(${window.innerWidth <= 400 ? 0.7 : window.innerWidth <= 600 ? 0.75 : 1})`
       })
       .catch((error) => {
+        // 缩放回原先尺寸
+        node.style.transform = `scale(${window.innerWidth <= 400 ? 0.7 : window.innerWidth <= 600 ? 0.75 : 1})`
         console.error('Something went wrong!', error)
       })
   }
