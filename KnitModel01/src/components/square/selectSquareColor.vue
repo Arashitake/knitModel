@@ -1,39 +1,31 @@
 <script setup>
-import { ref, reactive, watch } from 'vue'
+import { reactive, watch } from 'vue'
 
 const props = defineProps({
   pureColorArr: Array[String]
 })
 
 // v-model颜色数组
-const [color1, color2, color3, color4, color5, color6, color7, color8] = [
-  ref(props.pureColorArr[0]),
-  ref(props.pureColorArr[1]),
-  ref(props.pureColorArr[2]),
-  ref(props.pureColorArr[3]),
-  ref(props.pureColorArr[4]),
-  ref(props.pureColorArr[5]),
-  ref(props.pureColorArr[6]),
-  ref(props.pureColorArr[7])
-]
+let getColorArr = reactive([...props.pureColorArr])
 
-const getColorArr = reactive([
-  color1.value,
-  color2.value,
-  color3.value,
-  color4.value,
-  color5.value,
-  color6.value,
-  color7.value,
-  color8.value
-])
 // 可以通过watch去获取历史选择色号
 const emit = defineEmits(['selectcolor'])
 
-watch(getColorArr, (getColorArr) => {
-  // console.log('getColorArr: ', getColorArr)
-  emit('selectcolor', getColorArr)
-})
+watch(
+  () => getColorArr,
+  (getColorArr) => {
+    emit('selectcolor', getColorArr)
+  },
+  { deep: true }
+)
+
+watch(
+  () => props.pureColorArr,
+  (oldval) => {
+    getColorArr = oldval
+  },
+  { deep: true }
+)
 </script>
 
 <template>

@@ -10,12 +10,21 @@ let getColorArr = reactive([...props.pureColorArr])
 
 // 可以通过watch去获取历史选择色号
 const emit = defineEmits(['selectcolor'])
-watch(getColorArr, (getColorArr) => {
-  emit('selectcolor', getColorArr)
-})
-watch(props, (oldval) => {
-  getColorArr = oldval.pureColorArr
-})
+watch(
+  () => getColorArr,
+  (getColorArr) => {
+    emit('selectcolor', getColorArr)
+  },
+  { deep: true }
+)
+
+watch(
+  () => props.pureColorArr,
+  (oldval) => {
+    getColorArr = oldval
+  },
+  { deep: true }
+)
 </script>
 
 <template>

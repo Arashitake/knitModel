@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUpdated, ref } from 'vue'
+import { onMounted, watch, ref } from 'vue'
 import Zdog from 'zdog'
 
 const squareCanvas = ref(null)
@@ -31,9 +31,13 @@ onMounted(() => {
   draw(ZOOM)
 })
 
-onUpdated(() => {
-  draw(ZOOM)
-})
+watch(
+  () => [props.kcolor, ZOOM],
+  () => {
+    draw(ZOOM)
+  },
+  { deep: true }
+)
 
 // 内部定位正方形六面
 const setCubeFace = (group, rotate, translate, color) => {

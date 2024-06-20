@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUpdated, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import Zdog from 'zdog'
 
 const cylinderCanvas = ref(null)
@@ -34,9 +34,13 @@ onMounted(() => {
   draw(ZOOM)
 })
 
-onUpdated(() => {
-  draw(ZOOM)
-})
+watch(
+  () => [props.kcolor, ZOOM],
+  () => {
+    draw(ZOOM)
+  },
+  { deep: true }
+)
 
 // 颜色顺序
 const colorOrder1 = [4, 7, 2, 5, 0, 3, 6, 1]
