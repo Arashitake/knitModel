@@ -9,8 +9,8 @@
 
 ### Ⅰ. 方八股
 
-<img src="https://img.picui.cn/free/2024/06/24/667923a62d2ec.png"/>
+<img style="width: 400px;" src="https://img.picui.cn/free/2024/06/24/667923a62d2ec.png"/>
 
 ### Ⅱ. 圆八股
 
-<img src="https://img.picui.cn/free/2024/06/24/667923d23b1b4.png"/>
+<img style="width: 400px;" src="https://img.picui.cn/free/2024/06/24/667923d23b1b4.png"/>
